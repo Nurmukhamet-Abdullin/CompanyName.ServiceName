@@ -1,0 +1,120 @@
+﻿@model AddMeasurementPoint
+@{
+    ViewData["Title"] = "Create Power Measurement Point";
+}
+
+<hr />
+<form asp-action="CreateMeasurementPoint">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @{
+        if (ViewContext.HttpContext.Request.Method == "POST")
+        {
+            // TODO this <span/> should be replaced by disappearing notification
+            if (ViewBag.Errors != null)
+            {
+                foreach (var e in ViewBag.Errors)
+                {
+                    <div><span class="text-danger">@e</span></div>
+                }
+            }
+            else
+            {
+                <div><span class="text-success">Power Measurement Point Created Successfully!</span></div>
+            }
+        }
+    }
+    <div class="row">
+        <div class="form-group col-12 col-sm-6 col-lg-3">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="card-columns col">
+            <div class="card">
+                <div class="card-header">Electricity Meter</div>
+                <div class="card-body">
+                    @*
+                        TODO <div class="form-group"></div> can be replaced with tag helper
+                        TODO or even tag helper instead of <div class="card"></div>
+                    *@
+                    <div class="form-group">
+                        <label asp-for="ElectricityMeter.Number" class="control-label"></label>
+                        <input asp-for="ElectricityMeter.Number" class="form-control" />
+                        <span asp-validation-for="ElectricityMeter.Number" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ElectricityMeter.MeterType" class="control-label">Electricity Meter Type</label>
+                        <input asp-for="ElectricityMeter.MeterType" class="form-control" />
+                        <span asp-validation-for="ElectricityMeter.MeterType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ElectricityMeter.VerificationDate" class="control-label">Verification Date</label>
+                        <input asp-for="ElectricityMeter.VerificationDate" type="date" class="form-control" />
+                        <span asp-validation-for="ElectricityMeter.VerificationDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Current Transformer</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="CurrentTransformer.Number" class="control-label"></label>
+                        <input asp-for="CurrentTransformer.Number" class="form-control" />
+                        <span asp-validation-for="CurrentTransformer.Number" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CurrentTransformer.Type" class="control-label"></label>
+                        <input asp-for="CurrentTransformer.Type" class="form-control" />
+                        <span asp-validation-for="CurrentTransformer.Type" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CurrentTransformer.TransformationRatio" class="control-label">Transformation Ratio</label>
+                        <input asp-for="CurrentTransformer.TransformationRatio" class="form-control" />
+                        <span asp-validation-for="CurrentTransformer.TransformationRatio" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CurrentTransformer.VerificationDate" class="control-label">Verification Date</label>
+                        <input asp-for="CurrentTransformer.VerificationDate" type="date" class="form-control" />
+                        <span asp-validation-for="CurrentTransformer.VerificationDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Voltage Transformer</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="VoltageTransformer.Number" class="control-label"></label>
+                        <input asp-for="VoltageTransformer.Number" class="form-control" />
+                        <span asp-validation-for="VoltageTransformer.Number" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="VoltageTransformer.Type" class="control-label"></label>
+                        <input asp-for="VoltageTransformer.Type" class="form-control" />
+                        <span asp-validation-for="VoltageTransformer.Type" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="VoltageTransformer.TransformationRatio" class="control-label">Transformation Ratio</label>
+                        <input asp-for="VoltageTransformer.TransformationRatio" class="form-control" />
+                        <span asp-validation-for="VoltageTransformer.TransformationRatio" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="VoltageTransformer.VerificationDate" class="control-label">Verification Date</label>
+                        <input asp-for="VoltageTransformer.VerificationDate" type="date" class="form-control" />
+                        <span asp-validation-for="VoltageTransformer.VerificationDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
